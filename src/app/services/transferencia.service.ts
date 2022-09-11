@@ -16,14 +16,15 @@ export class TransferenciaService {
   get transferencias(){
     return this.listaTransferencia;
   }
-05
+
   todas() {
     return this.HttpClient.get<Transferencia[]>(this.url);
   }
 
-  adicionar(transferencia: any){
+  adicionar(transferencia: Transferencia){
     this.hidratar(transferencia);
-    this.listaTransferencia.push(transferencia);
+    //this.listaTransferencia.push(transferencia);
+    return this.HttpClient.post<Transferencia>(this.url, transferencia);
   }
 
   private hidratar(transferencia: any){
